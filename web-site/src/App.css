@@ -19,7 +19,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -28,6 +27,19 @@
   color: #61dafb;
 }
 
+.btn-primary, .btn-primary:active, .btn-primary:visited {
+  background-color: #8064A2 !important;
+  color: white;
+  border-radius: 1px;
+  border-color:white;
+  cursor: pointer;
+  width: 150px;
+  height: 40px;
+}
+
+.btn-primary:hover {
+  border-color: red;
+}
 /* @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
