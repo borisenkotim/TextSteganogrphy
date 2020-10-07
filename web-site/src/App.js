@@ -8,7 +8,7 @@ function App() {
       <header className="App-header">
         <img src="https://tinyurl.com/y2yssnh5" className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code>
+        Text Steganography Web Application
         </p>
       </header>
     </div>
