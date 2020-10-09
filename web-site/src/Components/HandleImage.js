@@ -1,39 +1,30 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import '../App.css';
-//import {FileDialogue} from './FileDialogue';
 
 export class HandleImage extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {uploadFile: false};
+        this.state = {imageFile: null};
       }
 
-
-    toggleUploadFile = () => {
-        this.setState({uploadFile: !this.state.uploadFile});
-        this.handleFileSelect();
+    toggleUploadFile = event => {
+        console.log(event.target.files[0]);
+        this.setState({imageFile: URL.createObjectURL(event.target.files[0]) });
     }
-    componentDidMount(){
-        this.fileSelector = buildFileSelector();
-    }
-      
-    handleFileSelect = (e) => {
-        //e.preventDefault();
-        this.fileSelector.click();
+    getText = event => {
+        console.log(event.target.value);
     }
     render () {
         return (<div>
-            <h1> Upload Image that you would like encrypt here</h1>
-            <Button variant="primary" onClick={this.toggleUploadFile}>Upload</Button>{' '}
+            <h1> Upload Image Here</h1>
+            {/* <Button variant="primary" onClick={this.toggleUploadFile}>Upload</Button>{' '} */}
+            <img className="imageFormat" src={this.state.imageFile}/> <br></br>
+            <span><input clasName="inputBtn" type="file" name="img" id="" accept="image/*" onChange={this.toggleUploadFile}/></span> 
+            <div><input className="inputText" type="text" onChange={this.getText}></input>
+            <Button variant="primary">Hide Message into Image</Button>{' '}
+            </div>
             </div>);
     }
 }
-
-function buildFileSelector(){
-    const fileSelector = document.createElement('input');
-    fileSelector.setAttribute('type', 'file');
-    fileSelector.setAttribute('multiple', 'multiple');
-    return fileSelector;
-  }

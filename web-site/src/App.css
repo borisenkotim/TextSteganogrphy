@@ -27,24 +27,39 @@
   color: #61dafb;
 }
 
+.imageFormat {
+  max-width: 600px;
+  max-height: 600px;
+}
+
+ .inputBtn {
+  align-items: center;
+}
+
+.blockDiv {
+  position: relative;
+  width: 800px;
+  height: 30px;
+  align-items: center;
+  background-color: #61dafb;
+}
+
+
 .btn-primary, .btn-primary:active, .btn-primary:visited {
   background-color: #8064A2 !important;
   color: white;
   border-radius: 1px;
   border-color:white;
   cursor: pointer;
-  width: 150px;
-  height: 40px;
+  width: 200px;
+  height: 24px;
+}
+
+.inputText {
+  height: 20px;
+  width: 200px;
 }
 
 .btn-primary:hover {
   border-color: red;
 }
-/* @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
