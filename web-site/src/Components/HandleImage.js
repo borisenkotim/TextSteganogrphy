@@ -9,7 +9,9 @@ export class HandleImage extends React.Component {
         this.state = {
             imageFile: null,
             hiddenText: "",
-            encrypted: false
+            encrypted: false,
+            decodedText: "",
+            decrypted: false
         };
       }
 
@@ -37,21 +39,45 @@ export class HandleImage extends React.Component {
     ecnryptedImage = () => {
         return (
             this.state.encrypted ?
-            <div><br></br><h2>Ecnrypted Image:</h2><br></br><img className="imageFormat" src={this.state.imageFile}/><br></br></div>
+            <div><br></br><p>Ecnrypted Image:</p><img className="imageFormat" src={this.state.imageFile}/><br></br></div>
             : null
         );
     }
+
+    enterText = () => {
+        return (
+            (this.state.imageFile != null) ? 
+            <div><Button variant="primary" onClick={this.decodeImageBtnPressed}>Decode Image</Button>{' '}
+            <input className="inputText" type="text" onChange={this.getText}></input>
+            <Button variant="primary" onClick={this.hideTextSubmission}>Hide Message into Image</Button>{' '}
+            </div> 
+            : null
+        );
+    }
+
+    decodeImageBtnPressed = () => {
+        this.setState({decrypted: true});
+        // perform action to decrypt image here
+    }
+
+    showDecodedText = () => {
+        // display decoded text from image, should be null if image doesn't exist or has no message
+        return (
+            this.state.decrypted ? 
+            ((this.state.decodedText !== "") ? <div>Decoded Text: {this.state.DecodeText} </div> : <div>No Message Found</div>)
+            : null 
+        );
+    }
+
     render () {
         return (<div>
-            <h2> Upload Image Here:</h2>
-            <img className="imageFormat" src={this.state.imageFile}/><br></br>
-            <input clasName="inputBtn" type="file" name="img" id="" accept="image/*" onChange={this.toggleUploadFile}/><br></br>
-            {(this.state.imageFile != null) ? 
-                <div><input className="inputText" type="text" onChange={this.getText}></input>
-                <Button variant="primary" onClick={this.hideTextSubmission}>Hide Message into Image</Button>{' '}
-                </div> 
-            : null
-            }
+            <p> Upload Image To Get Started:</p>
+            <img className="imageFormat" src={this.state.imageFile}/>
+            {(this.state.imageFile === null) ? 
+            <input clasName="inputBtn" type="file" name="img" id="" accept="image/*" onChange={this.toggleUploadFile}/>
+            : null }
+            {this.enterText()}
+            {this.showDecodedText()}
             {this.ecnryptedImage()}
             </div>);
     }

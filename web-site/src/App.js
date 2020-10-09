@@ -8,9 +8,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>
+        <h2>
         Text Steganography Web Application
-        </p>
+        </h2>
         <HandleImage/> 
       </header>
       
