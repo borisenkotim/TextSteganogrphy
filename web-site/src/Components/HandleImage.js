@@ -13,6 +13,7 @@ export class HandleImage extends React.Component {
             decodedText: "",
             decrypted: false
         };
+        this.baseState = this.state;
       }
 
     toggleUploadFile = (event) => {
@@ -24,8 +25,13 @@ export class HandleImage extends React.Component {
         // console.log(event.target.value);
         this.setState({hiddenText: event.target.value});
     }
+    
+    decodeImageBtnPressed = () => {
+        this.setState({decrypted: true});
+        // perform action to decrypt image here and save text to state.decodText
+    }
 
-    hideTextSubmission = () => {
+    hideTextBtnPressed = () => {
         // perform action to hide text into image here
         if (this.state.hiddenText != null && this.state.hiddenText !== "" && this.state.imageFile != null) {
             // perform action to hide text into image here
@@ -37,27 +43,21 @@ export class HandleImage extends React.Component {
     }
     
     ecnryptedImage = () => {
-        return (
-            this.state.encrypted ?
-            <div><br></br><p>Ecnrypted Image:</p><img className="imageFormat" src={this.state.imageFile}/><br></br></div>
-            : null
+        // should show encypted image
+        return (<div><br></br><p>Ecnrypted Image:</p><img className="imageFormat" src={this.state.imageFile}/><br></br></div>
         );
     }
 
-    enterText = () => {
+    decodeAndHideTextBtns = () => {
         return (
             (this.state.imageFile != null) ? 
             <div><Button variant="primary" onClick={this.decodeImageBtnPressed}>Decode Image</Button>{' '}
             <input className="inputText" type="text" onChange={this.getText}></input>
-            <Button variant="primary" onClick={this.hideTextSubmission}>Hide Message into Image</Button>{' '}
+            <Button variant="primary" onClick={this.hideTextBtnPressed}>Hide Message into Image</Button>{' '}
+            {this.showDecodedText()}
             </div> 
             : null
         );
-    }
-
-    decodeImageBtnPressed = () => {
-        this.setState({decrypted: true});
-        // perform action to decrypt image here
     }
 
     showDecodedText = () => {
@@ -69,16 +69,21 @@ export class HandleImage extends React.Component {
         );
     }
 
+    reset = () => {
+        // resets component
+        this.setState(this.baseState);
+    }
+
     render () {
         return (<div>
-            <p> Upload Image To Get Started:</p>
+            {(this.state.imageFile === null) ? 
+            <p> Upload Image To Get Started:</p> : null }
             <img className="imageFormat" src={this.state.imageFile}/>
             {(this.state.imageFile === null) ? 
             <input clasName="inputBtn" type="file" name="img" id="" accept="image/*" onChange={this.toggleUploadFile}/>
             : null }
-            {this.enterText()}
-            {this.showDecodedText()}
-            {this.ecnryptedImage()}
+            {this.state.encrypted ? this.ecnryptedImage() : this.decodeAndHideTextBtns()}
+            {(this.state.imageFile != null) ? <Button variant="secondary" onClick={this.reset}>Restart</Button> : null }
             </div>);
     }
 }

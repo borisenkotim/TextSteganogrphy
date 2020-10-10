@@ -46,7 +46,7 @@
 
 
 .btn-primary, .btn-primary:active, .btn-primary:visited {
-  background-color: #8064A2 !important;
+  background-color: #8064A2;
   color: white;
   border-radius: 1px;
   border-color:white;
@@ -60,6 +60,16 @@
   width: 200px;
 }
 
-.btn-primary:hover {
+.btn-primary:hover, .btn-secondary:hover {
   border-color: red;
+}
+
+.btn-secondary {
+  color: white;
+  border-radius: 1px;
+  border-color:white;
+  cursor: pointer;
+  width: 100px;
+  height: 24px;
+  background-color: rgb(38, 112, 38) !important;
 }
