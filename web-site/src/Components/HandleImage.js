@@ -1,7 +1,8 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import '../App.css';
-import '../steganography.min.js'
+// import Wrapper from './Wrapper.js'
+// import '../steganography.min.js'
 
 export class HandleImage extends React.Component {
 
@@ -12,16 +13,31 @@ export class HandleImage extends React.Component {
             hiddenText: "",
             encrypted: false,
             decodedText: "",
-            decrypted: false
+            decrypted: false,
+            base64ImageUrl: ""
         };
         this.baseState = this.state;
-       // console.log(steg); // not working
 
       }
 
     toggleUploadFile = (event) => {
-        console.log(event.target.files[0]);
-        this.setState({imageFile: URL.createObjectURL(event.target.files[0]) });
+        let file = (event.target.files[0])
+        console.log(file);
+        //URL.createObjectURL(event.target.files[0])
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = this._handleReaderLoaded.bind(this);
+            reader.readAsBinaryString(file);
+        }
+
+        this.setState({imageFile:  URL.createObjectURL(event.target.files[0])});
+    }
+
+    _handleReaderLoaded = (e) => {
+        let binaryStr = e.target.result;
+        this.setState({
+            base64ImageUrl: btoa(binaryStr)
+        })
     }
 
     getText = (event) => {
@@ -124,10 +140,13 @@ export class HandleImage extends React.Component {
             <p> Upload Image To Get Started:</p> : null }
             <img className="imageFormat" src={this.state.imageFile}/>
             {(this.state.imageFile === null) ? 
-            <input className="inputBtn" type="file" name="img" id="" accept="image/*" onChange={this.toggleUploadFile}/>
+            <input className="inputBtn" type="file" name="img" id="" accept=".jpeg, .png, .jpg" onChange={this.toggleUploadFile}/>
             : null }
             {this.state.encrypted ? this.ecnryptedImage() : this.decodeAndHideTextBtns()}
             {(this.state.imageFile != null) ? <Button variant="secondary" onClick={this.reset}>Restart</Button> : null }
+            {/* {this.state.encrypted ? 
+            <Wrapper secret={this.state.hiddenText} image={`data:image/jpeg;base64,${this.state.base64ImageUrl}`}/>
+            : null} */}
             </div>);
     }
 }
