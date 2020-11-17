@@ -1,0 +1,61 @@
+.App {
+    text-align: center;
+  }
+  
+  
+  .background {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+
+  .imageFormat {
+    max-width: 600px;
+    max-height: 600px;
+  }
+  
+   .inputBtn {
+    align-items: center;
+  }
+  
+  .blockDiv {
+    position: relative;
+    width: 800px;
+    height: 30px;
+    align-items: center;
+    background-color: #61dafb;
+  }
+  
+  
+  .btn-primary, .btn-primary:active, .btn-primary:visited {
+    background-color: #8064A2;
+    color: white;
+    border-radius: 1px;
+    border-color:white;
+    cursor: pointer;
+    width: 200px;
+    height: 24px;
+  }
+  
+  .inputText {
+    height: 20px;
+    width: 200px;
+  }
+  
+  .btn-primary:hover, .btn-secondary:hover {
+    border-color: red;
+  }
+  
+  .btn-secondary {
+    color: white;
+    border-radius: 1px;
+    border-color:white;
+    cursor: pointer;
+    width: 100px;
+    height: 24px;
+    background-color: rgb(38, 112, 38) !important;
+  }

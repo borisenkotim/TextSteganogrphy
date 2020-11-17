@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Steganography</title>
+    <link rel="stylesheet" href="App.css" />
+    <script src="js/steganography.min.js"></script>
+  </head>
+  <body class="App background">
+    <div>
+      <h1>Text Steganography</h1><p>Hides your choice of text in the image you upload.</p>
+      <p>Also can decode image text in uploaded image that</p>
+      <p>was prevousily hidden by this service.</p>
+      <i>Accepted file formats: .jpeg, .png, .jpg</i>
+      <div class="divFileSelected">
+        <br>
+        <input
+          class="btn-primary"
+          accept=".jpeg, .png, .jpg"
+          type="file"
+          onchange="fileUploaded(this);"
+        />
+      </div>
+      <div  class="">
+        <h5>Image</h5>
+        <img id="regImage" src="" alt="" />
+      </div>
+      <div class="">
+        <input id="secretText" type="secretText" />
+        <button class="btn-primary" onclick="hideSecretText()">
+          Hide Text Into Image
+        </button>
+      </div>
+      <div class="">
+        <h5>Encoded Image</h5>
+        <img id="encImage" src="" alt="" />
+      </div>
+      <div class="">
+        <input 
+          class="btn-primary"
+          accept=".jpeg, .png, .jpg" 
+          type="file"
+          onchange="decodeImage(this);" 
+        />
+        <img class = "" src="" alt="">
+        <h5>Decoded Text:  <i id="decodedText"></i></h5>
+        <br>
+      </div>
+    </div>
+    <script src="js/handlers.js"></script>
+  </body>
+</html>
