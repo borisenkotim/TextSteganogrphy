@@ -8,6 +8,13 @@ fileUploaded = (input) => {
       imgUrl = e.target.result;
       document.querySelector("#regImage").src = imgUrl;
     };
+    document.querySelector('#regImageText').innerText = "Uploaded Image";
+    document.querySelector('#hideTextBlock').innerHTML = (
+    `<input id="secretText" type="secretText" />
+     <button class="btn-primary" onclick="hideSecretText()">
+      Hide Text Into Image
+     </button><br></br>`
+    );
   } else console.log("no image loaded");
 
   reader.readAsDataURL(input.files[0]);
@@ -15,7 +22,10 @@ fileUploaded = (input) => {
 
 hideSecretText = () => {
   let done = steg.encode(document.querySelector('#secretText').value, imgUrl);
-  document.querySelector("#encImage").src = done;
+  document.querySelector('#encImageText').innerHTML = (
+  `<h5>Encoded Image</h5>
+  <img id="encImage" width=500 src=${done} alt="" /><br></br>`
+  );
 }
 
 decodeImage = (input) => {
@@ -24,7 +34,7 @@ decodeImage = (input) => {
       reader.onload = function(e) {
         let result = steg.decode(e.target.result);
         console.log(result);
-        document.querySelector('#decodedText').innerText = result;
+        document.querySelector('#decodedTextDes').innerHTML = (`Decoded Text: <i>${result}</i>`);
       };
     }
     reader.readAsDataURL(input.files[0]);

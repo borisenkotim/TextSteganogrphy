@@ -10,12 +10,12 @@
   </head>
   <body class="App background">
     <div>
-      <h1>Text Steganography</h1><p>Hides your choice of text in the image you upload.</p>
-      <p>Also can decode image text in uploaded image that</p>
-      <p>was prevousily hidden by this service.</p>
+      <h1>Text Steganography</h1>
+      <p class="introText">Hides your choice of text in the image you upload. Also can decode image text in uploaded image that was prevousily hidden by this service.</p>
       <i>Accepted file formats: .jpeg, .png, .jpg</i>
       <div class="divFileSelected">
-        <br>
+        <br><br>
+        <sub>Upload Image to Encode</sub><br>
         <input
           class="btn-primary"
           accept=".jpeg, .png, .jpg"
@@ -24,20 +24,17 @@
         />
       </div>
       <div  class="">
-        <h5>Image</h5>
-        <img id="regImage" src="" alt="" />
+        <h5 id="regImageText"></h5>
+        <img id="regImage" src="" width=400 alt="" />
+      </div>
+
+      <div id="hideTextBlock" class="">
+      </div>
+
+      <div id="encImageText" class="">
       </div>
       <div class="">
-        <input id="secretText" type="secretText" />
-        <button class="btn-primary" onclick="hideSecretText()">
-          Hide Text Into Image
-        </button>
-      </div>
-      <div class="">
-        <h5>Encoded Image</h5>
-        <img id="encImage" src="" alt="" />
-      </div>
-      <div class="">
+        <sub>Upload Image to Decode</sub><br>
         <input 
           class="btn-primary"
           accept=".jpeg, .png, .jpg" 
@@ -45,9 +42,9 @@
           onchange="decodeImage(this);" 
         />
         <img class = "" src="" alt="">
-        <h5>Decoded Text:  <i id="decodedText"></i></h5>
-        <br>
       </div>
+      <h5 id="decodedTextDes"></h5>
+      <br>
     </div>
     <script src="js/handlers.js"></script>
   </body>
