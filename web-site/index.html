@@ -7,7 +7,7 @@
     <link rel="icon" href="imageAssets/favicon.ico">
     <title>Steganography</title>
     <link rel="stylesheet" href="App.css" />
-    <script src="js/steganography.min.js"></script>
+    <script src="js/FileSaver.min.js"></script>
   </head>
   <body class="App background">
     <div>
@@ -27,7 +27,7 @@
       </div>
       <div  class="">
         <h5 id="regImageText"></h5>
-        <img id="regImage" src="" width=400 alt="" />
+        <img id="regImage" src="" alt="" />
       </div>
 
       <div id="hideTextBlock" class="">
@@ -43,9 +43,9 @@
           type="file"
           onchange="decodeImage(this);" 
         />
-        <img class = "" src="" alt="">
       </div>
       <h5 id="decodedTextDes"></h5>
+      <canvas id="decodeImg"></canvas>
       <br>
     </div>
     <script src="js/handlers.js"></script>
