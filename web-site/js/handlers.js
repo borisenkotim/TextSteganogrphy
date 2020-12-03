@@ -6,6 +6,7 @@ const PIXELHOP = 4;
 const RGBENDS = 2;  // green ends with 2
 const FONT = "30px Arial";
 const COLOR = 3; // Green
+const COLORMAX = 247;
 
 fileUploaded = (input) => {
   // function is called when upload button is pressed
@@ -80,12 +81,12 @@ encodeImageHelper = (image, messageText) => {
     // iterates through text data and hides pixels based on position
     for (var i = 0; i < textCanvas.data.length; i += PIXELHOP) {
         if (textCanvas.data[i+COLOR] !== 0) {
-            if (imgCanvas.data[i+COLOR-2] % 10 != RGBENDS && imgCanvas.data[i+1] <= 247) {
-              while (imgCanvas.data[i+COLOR-2] % 10 != RGBENDS) {
-                  imgCanvas.data[i+COLOR-2]++;
-              }
+            if (imgCanvas.data[i+COLOR-2] % 10 != RGBENDS && imgCanvas.data[i+COLOR-2] <= COLORMAX) {
+
+              while (imgCanvas.data[i+COLOR-2] % 10 != RGBENDS) imgCanvas.data[i+COLOR-2]++;
+
             }
-            else if (imgCanvas.data[i+COLOR-2] > 247) imgCanvas.data[i+COLOR-2] = 247;
+            else if (imgCanvas.data[i+COLOR-2] > COLORMAX) imgCanvas.data[i+COLOR-2] = COLORMAX;
         }
         else if (imgCanvas.data[i+COLOR-2] % 10 == RGBENDS) imgCanvas.data[i+COLOR-2]--;
     }
@@ -122,7 +123,7 @@ decodeImage = (input) => {
                       decoded.data[i+COLOR] = 255;
                       decoded.data[i+COLOR-1] = 0;
                       decoded.data[i+COLOR-2] = 0;
-                      decoded.data[i] = 0;
+                      decoded.data[i+COLOR-3] = 0;
                   }
                   else decoded.data[i+COLOR] = 0;
               }
