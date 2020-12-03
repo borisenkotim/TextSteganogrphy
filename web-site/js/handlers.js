@@ -5,6 +5,7 @@ var myCanvas;
 const PIXELHOP = 4;
 const RGBENDS = 2;  // green ends with 2
 const FONT = "30px Arial";
+const COLOR = 3; // Green
 
 fileUploaded = (input) => {
   // function is called when upload button is pressed
@@ -78,15 +79,15 @@ encodeImageHelper = (image, messageText) => {
 
     // iterates through text data and hides pixels based on position
     for (var i = 0; i < textCanvas.data.length; i += PIXELHOP) {
-        if (textCanvas.data[i+3] !== 0) {
-            if (imgCanvas.data[i+1] % 10 != RGBENDS && imgCanvas.data[i+1] <= 247) {
-              while (imgCanvas.data[i+1] % 10 != RGBENDS) {
-                  imgCanvas.data[i+1]++;
+        if (textCanvas.data[i+COLOR] !== 0) {
+            if (imgCanvas.data[i+COLOR-2] % 10 != RGBENDS && imgCanvas.data[i+1] <= 247) {
+              while (imgCanvas.data[i+COLOR-2] % 10 != RGBENDS) {
+                  imgCanvas.data[i+COLOR-2]++;
               }
             }
-            else if (imgCanvas.data[i+1] > 247) imgCanvas.data[i+1] = 247;
+            else if (imgCanvas.data[i+COLOR-2] > 247) imgCanvas.data[i+COLOR-2] = 247;
         }
-        else if (imgCanvas.data[i+1] % 10 == RGBENDS) imgCanvas.data[i+1]--;
+        else if (imgCanvas.data[i+COLOR-2] % 10 == RGBENDS) imgCanvas.data[i+COLOR-2]--;
     }
 
     // sets the manipulated image with the the hidden text to be the image seen
@@ -117,13 +118,13 @@ decodeImage = (input) => {
               var decoded = imgCanvas.getImageData(0, 0, imgDiv.width, imgDiv.height);
               for (var i = 0; i < decoded.data.length; i += PIXELHOP) {
                   // reversing the algorithm for encrypting we decrypt the image to show any hidden text or object
-                  if (decoded.data[i+1] % 10 == RGBENDS) {
-                      decoded.data[i+3] = 255;
-                      decoded.data[i+2] = 0;
-                      decoded.data[i+1] = 0;
+                  if (decoded.data[i+COLOR-2] % 10 == RGBENDS) {
+                      decoded.data[i+COLOR] = 255;
+                      decoded.data[i+COLOR-1] = 0;
+                      decoded.data[i+COLOR-2] = 0;
                       decoded.data[i] = 0;
                   }
-                  else decoded.data[i+3] = 0;
+                  else decoded.data[i+COLOR] = 0;
               }
 
               // sets the decoded text/image data into the canvas element shown
