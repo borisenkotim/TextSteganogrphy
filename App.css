@@ -30,7 +30,32 @@
     background-color: #61dafb;
   }
   
-  
+  .imageDiv {
+    max-width: 500px;
+    object-fit: contain;
+    margin: auto;
+  }
+
+  .messageDiv {
+    max-width: 900px;
+    object-fit: contain;
+    margin: auto;
+  }
+
+  .image {
+    max-width:100%;
+    max-height:100%;
+    object-fit: contain;
+    margin: auto;
+  }
+
+  .message {
+    max-width:100%;
+    max-height:100%;
+    object-fit: contain;
+    margin: auto;
+  }
+
   .btn-primary, .btn-primary:active, .btn-primary:visited {
     background-color: #8064A2;
     color: white;

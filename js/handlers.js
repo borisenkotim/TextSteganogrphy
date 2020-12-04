@@ -4,7 +4,7 @@ var imgUrl;
 var myCanvas;
 const PIXELHOP = 4;
 const RGBENDS = 2;  // green ends with 2
-const FONT = "30px Arial";
+const FONT = "30px Tahoma";
 const COLOR = 3; // Green
 const COLORMAX = 247;
 
@@ -43,7 +43,7 @@ hideSecretText = () => {
   // intializes the canvas elements needed for encryption to happen
   document.querySelector('#encImageBlock').innerHTML = (
   `<h5>Encoded Image</h5>
-  <canvas id="encImage"></canvas>
+  <canvas class="image" id="encImage"></canvas>
   <div id="textBlock"><canvas id="hiddenText"></canvas></div><br>`
   );
   myCanvas = document.getElementById("encImage");
@@ -54,6 +54,7 @@ hideSecretText = () => {
   // calls function that runs the algorithm for hiding text
   this.encodeImageHelper(image, messageText);
   document.querySelector('#textBlock').innerHTML = `<button id="downloadBtn" class="btn-secondary" onclick="downloadImage()" >Download</button><br>`;
+  
   image.src = imgUrl;
 }
 
@@ -66,7 +67,7 @@ encodeImageHelper = (image, messageText) => {
   
   // loads image that the reader loaded
   image.onload = function(){
-
+    
     // sets the demensions for the encoded image to be the same as uploaded image
     myCanvas.width = image.width;
     myCanvas.height = image.height;

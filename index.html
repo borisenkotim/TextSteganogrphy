@@ -25,15 +25,15 @@
           onchange="fileUploaded(this);"
         />
       </div>
-      <div  class="">
+      <div class="imageDiv">
         <h5 id="regImageText"></h5>
-        <img id="regImage" src="" alt="" />
+        <img class="image" id="regImage" src="" alt="" />
       </div>
 
       <div id="hideTextBlock" class="">
       </div>
 
-      <div id="encImageBlock" class="">
+      <div id="encImageBlock" class="imageDiv">
       </div>
       <div class="">
         <sub>Upload Image to Decode</sub><br>
@@ -44,8 +44,7 @@
           onchange="decodeImage(this);" 
         />
       </div>
-      <h5 id="decodedTextDes"></h5>
-      <canvas id="decodeImg"></canvas>
+      <div class="messageDiv"><h5 id="decodedTextDes"></h5><canvas class="message" id="decodeImg"></canvas></div>
       <br>
     </div>
     <script src="js/handlers.js"></script>
